@@ -1077,6 +1077,7 @@ def printfig(fname='',frameno='', figno='', format='png', plotdir='.', \
     if plotdir != '.':
         fname = os.path.join(plotdir,fname)
     if verbose:  print('    Saving plot to file ', fname)
+    print('lookhere: ' + str(kml_fig))
     if kml_fig:
         # from webpage : https://robotics.usc.edu/~ampereir/wordpress/?p=626
         # This was added so that in KML, axes, tick labels, etc do not get printed.
@@ -1098,9 +1099,10 @@ def printfig(fname='',frameno='', figno='', format='png', plotdir='.', \
         plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, 
                         hspace = 0, wspace = 0)
         plt.margins(0,0)
-        plt.savefig(fname, transparent=True, bbox_inches='tight',dpi=kml_dpi)
+        plt.savefig(fname, transparent=True, bbox_inches='tight',dpi=300)
     else:
-        plt.savefig(fname, bbox_inches=bbox_inches)
+        plt.savefig(fname, transparent=True, bbox_inches='tight',dpi=300)
+        #plt.savefig(fname, bbox_inches=bbox_inches)
 
     if close_fig:
         # to avoid running out of memory when making many plots
